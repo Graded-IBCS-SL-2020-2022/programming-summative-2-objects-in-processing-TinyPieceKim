@@ -1,4 +1,3 @@
-
 /** MAKE SURE TO READ THE README CAREFULLY BEFORE YOU BEGIN EDITING THIS CODE */
 import processing.core.PApplet;
 
@@ -17,6 +16,17 @@ public class Sketch extends PApplet {
     Ball b3;
     Ball b4;
 
+    Bubble bb1;
+    Bubble bb2;
+    Bubble bb3;
+    Bubble bb4;
+
+    Snowflake sf1;
+    Snowflake sf2;
+    Snowflake sf3;
+    Snowflake sf4;
+
+
     public void settings() {
         size(500, 500);
     }
@@ -32,12 +42,22 @@ public class Sketch extends PApplet {
         frameRate(30);
         b1 = new Ball(this);
         b2 = new Ball(this);
-        b3 = new Ball(this, 150, 250, 100, 1, 7, 10);
-        b4 = new Ball(this, 350, 250, 100, 255, 10, 7);
+        b3 = new Ball(this, 150, 250, 100, true, 4, 7);
+        b4 = new Ball(this, 350, 250, 110, true, 7, 4);
+
+        bb1 = new Bubble(this);
+        bb2 = new Bubble(this);
+        bb3 = new Bubble(this, 150, 100, 65, 255, 150, 10, 150, 1, -3);
+        bb4 = new Bubble(this, 350, 100, 80, 255, 150, 10, 150, 1, -3);
+
+        sf1 = new Snowflake(this);
+        sf2 = new Snowflake(this);
+        sf3 = new Snowflake(this, 150, 100, 100, 255, 150, 255, 50, -2, 2);
+        sf4 = new Snowflake(this, 350, 100, 100, 255, 150, 255, 50, 1, 2);
     }
 
     public void draw() {
-        background(100);
+        background(45);
 
         /* SUMMATIVE REQUIRED Draw and move all balls, snowflakes, and bubbles */
         b1.drawBall();
@@ -48,6 +68,24 @@ public class Sketch extends PApplet {
         b3.moveBall();
         b4.drawBall();
         b4.moveBall();
+
+        bb1.drawBubble();
+        bb1.moveBubble();
+        bb2.drawBubble();
+        bb2.moveBubble();
+        bb3.drawBubble();
+        bb3.moveBubble();
+        bb4.drawBubble();
+        bb4.moveBubble();
+
+        sf1.drawSnowflake();
+        sf1.moveSnowflake();
+        sf2.drawSnowflake();
+        sf2.moveSnowflake();
+        sf3.drawSnowflake();
+        sf3.moveSnowflake();
+        sf4.drawSnowflake();
+        sf4.moveSnowflake();
     }
 
     /**
@@ -62,7 +100,7 @@ public class Sketch extends PApplet {
         } else {
             alpha = 255;
         }
-        return color(random(0, 255), random(0, 255), random(0, 255), alpha);
+        return color(random(55, 159), random(142, 202), 255, alpha);
     }
 
     /*

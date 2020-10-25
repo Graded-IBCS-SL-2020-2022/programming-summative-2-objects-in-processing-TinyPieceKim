@@ -15,7 +15,7 @@ class Ball {
      */
     public Ball(Sketch sketch) {
         s = sketch;
-        diameter = s.random(50, 150); // random diameter between 50 and 150
+        diameter = s.random(100, 150); // random diameter between 50 and 150
         x = s.random(diameter / 2, s.width - diameter / 2);
         y = s.random(diameter / 2, s.height - diameter / 2);
 
@@ -23,22 +23,23 @@ class Ball {
          * SUMMATIVE REQUIRED use the randomColor() method in the sketch to set default
          * balls to a solid random color
          */
-        col = s.randomColor(true); // randomly make it true or false **REWRITE**
+        col = s.randomColor(false); // randomly make it true or false **REWRITE**
 
         /*
          * SUMMATIVE REQUIRED Set speedX and speedY to reasonable defaults. Random
          * numbers could be nice, but are not required.
          */
-         speedX = s.random(5, 10);
+         speedX = s.random(2, 5);
+         speedY = s.random(2, 5);
     }
 
     /** This constructor lets you specify all of the ball instance variables */
-    public Ball(Sketch ss, float X, float Y, float ballDiam, int ballColor, float sx, float sy) {
+    public Ball(Sketch ss, float X, float Y, float ballDiam, boolean tsl, float sx, float sy) {
         s = ss;
         x = X;
         y = Y;
         diameter = ballDiam;
-        col = ballColor;
+        col = s.randomColor(tsl);
         speedX = sx;
         speedY = sy;
     }

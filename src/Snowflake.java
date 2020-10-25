@@ -2,12 +2,50 @@
 /* DON'T FORGET TO RENAME THE FILE TO Snowflake.java WHEN READY TO TEST! */
 
 class Snowflake {
+    private Sketch s;
+    private float diameter;
+    private float x;
+    private float y;
+    private int col; 
+    private int borderColor; 
+    private float speedY;
+    private float speedX;
     /*
      * SUMMATIVE REQUIRED Implement this entire class. ONLY drawSnowflake() and
      * moveSnowflake() have been implemented for you! I recommend using your
      * Bubble.java as a template. Start by creating your instance variables and
      * constructors.
      */
+
+    public Snowflake(Sketch sketch)
+    {
+      s = sketch;
+      diameter = s.random(70, 100);
+      x = s.random(diameter / 2, s.width - diameter / 2);
+      y = s.random(diameter / 2, s.height - diameter / 2);
+      col = s.color(235, 255);
+      borderColor = s.color(255, 150);
+      speedX = s.random(-2, 2);
+      speedY = 2;
+    }
+
+    public Snowflake (Sketch ss, float X, float Y, float sfDiam, int sfColor, int sfAlpha, int borderC, int borderA, float sx, float sy){
+       s = ss;
+       x = X;
+       y = Y;
+       diameter = sfDiam;
+       col = s.color(sfColor, sfAlpha); 
+       borderColor = s.color(borderC, borderA);
+       speedX = sx;
+       speedY = sy;
+     }
+
+     public float getRadius()
+     {
+       float f;
+       f = diameter/2;
+       return f;
+     }
 
     /** Draws the flake. */
     public void drawSnowflake() {
