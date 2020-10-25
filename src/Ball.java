@@ -8,6 +8,7 @@ class Ball {
     private float speedY;
     private float speedX;
 
+
     /**
      * The default constructor generates random values for most of the instance
      * variables.
@@ -22,22 +23,35 @@ class Ball {
          * SUMMATIVE REQUIRED use the randomColor() method in the sketch to set default
          * balls to a solid random color
          */
+        col = s.randomColor(true); // randomly make it true or false **REWRITE**
 
         /*
          * SUMMATIVE REQUIRED Set speedX and speedY to reasonable defaults. Random
          * numbers could be nice, but are not required.
          */
+         speedX = s.random(5, 10);
     }
 
     /** This constructor lets you specify all of the ball instance variables */
-    public Ball(Sketch s, float X, float Y, float ballDiam, int ballColor, float sx, float sy) {
-        /* SUMMATIVE REQUIRED Fill out this constructor */
+    public Ball(Sketch ss, float X, float Y, float ballDiam, int ballColor, float sx, float sy) {
+        s = ss;
+        x = X;
+        y = Y;
+        diameter = ballDiam;
+        col = ballColor;
+        speedX = sx;
+        speedY = sy;
     }
 
     /*
      * SUMMATIVE REQUIRED Add a method called `getRadius()` that returns a float
      * representing the radius of the ball
      */
+    public float getRadius()
+    {
+      float f = diameter / 2;
+      return f;
+    }
 
     /*
      * SUMMATIVE OPTIONAL Add a method called `stop()` that sets the ball speed to
