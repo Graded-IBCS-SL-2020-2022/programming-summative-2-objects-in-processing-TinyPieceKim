@@ -1,5 +1,8 @@
+
 /** MAKE SURE TO READ THE README CAREFULLY BEFORE YOU BEGIN EDITING THIS CODE */
+//hi
 import processing.core.PApplet;
+import java.lang.Math;
 
 public class Sketch extends PApplet {
 
@@ -25,6 +28,26 @@ public class Sketch extends PApplet {
     Snowflake sf2;
     Snowflake sf3;
     Snowflake sf4;
+
+    boolean b1stopped = false;
+    boolean b2stopped = false;
+    boolean b3stopped = false;
+    boolean b4stopped = false;
+
+
+    private int count;
+    private boolean reset = false;
+    //private boolean countset = false;
+    private float pointX;
+    private float pointY;
+    private boolean onlyOnce = true;
+
+    private boolean blue = true;
+    private boolean green;
+    private boolean red;
+    private boolean yellow;
+
+    int tempColor = 0;
 
 
     public void settings() {
@@ -53,11 +76,11 @@ public class Sketch extends PApplet {
         sf1 = new Snowflake(this);
         sf2 = new Snowflake(this);
         sf3 = new Snowflake(this, 150, 100, 100, 255, 150, 255, 50, -2, 2);
-        sf4 = new Snowflake(this, 350, 100, 100, 255, 150, 255, 50, 1, 2);
+        sf4 = new Snowflake(this, 350, 100, 100, 255, 150, 255, 50, 1, 3);
     }
 
     public void draw() {
-        background(45);
+          background(45);
 
         /* SUMMATIVE REQUIRED Draw and move all balls, snowflakes, and bubbles */
         b1.drawBall();
@@ -86,6 +109,31 @@ public class Sketch extends PApplet {
         sf3.moveSnowflake();
         sf4.drawSnowflake();
         sf4.moveSnowflake();
+
+        /*if(reset)
+        {
+          countset = true;
+          reset = false;
+        }
+        if(countset){
+          count++;
+          if(count >= 150){
+            sf1.SpeedToNormal();
+            sf2.SpeedToNormal();
+            sf3.SpeedToNormal();
+            sf4.SpeedToNormal();
+            count = 0;
+            countset = false;
+          }*/
+        if(reset && sf1.x <= pointX+20 && sf1.x >= pointX-20 && sf1.y <= pointY+20 && sf1.y >= pointY-20){
+        sf1.SpeedToNormal();
+        sf2.SpeedToNormal();
+        sf3.SpeedToNormal();
+        sf4.SpeedToNormal();
+        onlyOnce = true;
+        reset = false;
+      }
+        
     }
 
     /**
@@ -100,7 +148,26 @@ public class Sketch extends PApplet {
         } else {
             alpha = 255;
         }
-        return color(random(55, 159), random(142, 202), 255, alpha);
+
+        if(blue)
+        {
+          tempColor = color(random(55, 159), random(142, 202), 255, alpha);
+        }
+        else if(green)
+        {
+          tempColor = color(random(66, 158), random(247, 255), random(90, 164), alpha);
+        }
+        else if(red)
+        {
+          tempColor = color(255, random(34,92), random(50, 92), alpha);
+        }
+        else if(yellow)
+        {
+          tempColor = color(255, random(231, 255), random(108, 127), alpha);
+        }
+
+        return tempColor;
+        
     }
 
     /*
@@ -112,6 +179,108 @@ public class Sketch extends PApplet {
      * stops? (this is a major challenge - you can use the variables mouseX and
      * mouseY to see where the mouse was clicked.)
      */
+    public void mousePressed()
+    {
+      if(Math.sqrt((mouseX-b1.x)*(mouseX-b1.x)+(mouseY-b1.y)*(mouseY-b1.y)) <= b1.getRadius() && !b1stopped)
+      {
+        b1stopped = true;
+        b1.stop();
+        
+        blue = true;
+        green = false;
+        red = false;
+        yellow = false;
+
+        b1.col = randomColor(true);
+        b2.col = randomColor(true);
+        b3.col = randomColor(true);
+        b4.col = randomColor(true);
+
+      }
+      else if(Math.sqrt((mouseX-b1.x)*(mouseX-b1.x)+(mouseY-b1.y)*(mouseY-b1.y)) <= b1.getRadius() && b1stopped)
+      {
+        b1stopped = false;
+        b1.start();
+      }
+      if(Math.sqrt((mouseX-b2.x)*(mouseX-b2.x)+(mouseY-b2.y)*(mouseY-b2.y)) <= b2.getRadius() && !b2stopped)
+      {
+        b2stopped = true;
+        b2.stop();
+
+        blue = false;
+        green = true;
+        red = false;
+        yellow = false;
+
+        b1.col = randomColor(true);
+        b2.col = randomColor(true);
+        b3.col = randomColor(true);
+        b4.col = randomColor(true);
+      }
+      else if(Math.sqrt((mouseX-b2.x)*(mouseX-b2.x)+(mouseY-b2.y)*(mouseY-b2.y)) <= b2.getRadius() && b2stopped)
+      {
+        b2stopped = false;
+        b2.start();
+      }
+      if(Math.sqrt((mouseX-b3.x)*(mouseX-b3.x)+(mouseY-b3.y)*(mouseY-b3.y)) <= b3.getRadius() && !b3stopped)
+      {
+        b3stopped = true;
+        b3.stop();
+
+        blue = false;
+        green = false;
+        red = true;
+        yellow = false;
+
+        b1.col = randomColor(true);
+        b2.col = randomColor(true);
+        b3.col = randomColor(true);
+        b4.col = randomColor(true);
+      }
+      else if(Math.sqrt((mouseX-b3.x)*(mouseX-b3.x)+(mouseY-b3.y)*(mouseY-b3.y)) <= b3.getRadius() && b3stopped)
+      {
+        b3stopped = false;
+        b3.start();
+      }
+      if(Math.sqrt((mouseX-b4.x)*(mouseX-b4.x)+(mouseY-b4.y)*(mouseY-b4.y)) <= b4.getRadius() && !b4stopped)
+      {
+        b4stopped = true;
+        b4.stop();
+
+        blue = false;
+        green = false;
+        red = false;
+        yellow = true;
+
+        b1.col = randomColor(true);
+        b2.col = randomColor(true);
+        b3.col = randomColor(true);
+        b4.col = randomColor(true);
+      }
+      else if(Math.sqrt((mouseX-b4.x)*(mouseX-b4.x)+(mouseY-b4.y)*(mouseY-b4.y)) <= b4.getRadius() && b4stopped)
+      {
+        b4stopped = false;
+        b4.start();
+      }
+      
+
+      
+      if(onlyOnce){
+        sf1.changeSpeed(mouseX, mouseY);
+        sf2.changeSpeed(mouseX, mouseY);
+        sf3.changeSpeed(mouseX, mouseY);
+        sf4.changeSpeed(mouseX, mouseY);
+        reset = true;
+        
+        pointX = mouseX;
+        pointY = mouseY;
+        onlyOnce = false;
+
+        
+      }// fix the bug that only the first click works and other clicks dont work... 
+      
+    }
+
 
     public static void main(String[] args) {
         PApplet.main("Sketch");

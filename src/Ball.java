@@ -2,11 +2,15 @@
 class Ball {
     private Sketch s;
     private float diameter;
-    private float x;
-    private float y;
-    private int col;
+    public float x;
+    public float y;
+    public int col;
+    private int borderCol;
     private float speedY;
     private float speedX;
+    private float tempSy; // temporary variable that
+    private float tempSx; // stores speed data when it stop()s
+
 
 
     /**
@@ -24,7 +28,7 @@ class Ball {
          * balls to a solid random color
          */
         col = s.randomColor(false); // randomly make it true or false **REWRITE**
-
+        borderCol = s.color(235, 150);
         /*
          * SUMMATIVE REQUIRED Set speedX and speedY to reasonable defaults. Random
          * numbers could be nice, but are not required.
@@ -40,6 +44,7 @@ class Ball {
         y = Y;
         diameter = ballDiam;
         col = s.randomColor(tsl);
+        borderCol = s.color(235, 150); 
         speedX = sx;
         speedY = sy;
     }
@@ -61,6 +66,19 @@ class Ball {
      * 
      * If you create the methods, you'll need to think of a way to test them...
      */
+     public void stop(){
+       tempSx = speedX;
+       tempSy = speedY;
+       speedX = 0;
+       speedY = 0;
+     }
+     public void start()
+     {
+       speedX = tempSx;
+       speedY = tempSy;
+     }
+
+     
 
     /** Draws the ball. */
     public void drawBall() {
@@ -70,7 +88,7 @@ class Ball {
          * the border color to make it show up. You will need to make other changes too.
          */
 
-        s.stroke(col);
+        s.stroke(borderCol);
         s.fill(col);
         s.ellipse(x, y, diameter, diameter);
     }
