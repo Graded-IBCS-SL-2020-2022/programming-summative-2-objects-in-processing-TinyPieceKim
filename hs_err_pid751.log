@@ -1,0 +1,26 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fb1d1cb2401, pid=751, tid=756
+#
+# JRE version: OpenJDK Runtime Environment (11.0.8+10) (build 11.0.8+10-post-Ubuntu-0ubuntu118.04.1)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.8+10-post-Ubuntu-0ubuntu118.04.1, mixed mode, sharing, tiered, compressed oops, serial gc, linux-amd64)
+# Problematic frame:
+# C  [libjimage.so+0x2401]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P %E" (or dumping to /home/runner/summative-2-Gun-Woo-Kim/core.751)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugs.launchpad.net/ubuntu/+source/openjdk-lts
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: Sketch
+
+Host: Intel(R) Xeon(R) CPU @ 2.30GHz, 4 cores, 953M, Ubuntu 18.04.5 LTS
+Time: Tue Oct 27 00:55:01 2020 UTC elapsed time: 105 seconds (0d 0h 1m 45s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fb1cc059000):  JavaThread "Signal Dispatcher" daemon [_thread_in_vm, id=756, stack(0x00007fb1d01aa000,0x00007fb1d02ab000)]
